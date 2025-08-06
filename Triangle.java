@@ -1,69 +1,70 @@
-public class Triangle {
-    private double a;
-    private double b;
-    private double c;
-    private static int count = 0;
-
-    // Default constructor
-    public Triangle() 
-    {
-        this.a = 1.0;
-        this.b = 1.0;
-        this.c = 1.0;
-    }
-
-    // One side constructor (equilateral)
-    public Triangle(double side) 
-    {
-        this.a = side;
-        this.b = side;
-        this.c = side;
-    }
-
-    // Two sides constructor (isosceles)
-    public Triangle(double a, double b) 
-    {
-        this(a, b, Math.sqrt(a * a + b * b)); 
-       // Assume right triangle by default
-    }
-
-    // Three sides constructor
-    public Triangle(double a, double b, double c) {
-        this.a = a;
-        this.b = b;
-        this.c = c;
+public class Triangle{
+  double sideA;
+  double sideB;
+  double sideC;
+  public static int count;
+  
+  Triangle()
+  {
+   this.sideA = 1.0;
+   this.sideB = 1.0;
+   this.sideC = 1.0;
+  }
+  // One-Side constructor (For Equilateral triangle)
+  Triangle(double side)
+  {
+    this.sideA = side;
+    this.sideB = side;
+    this.sideC = side;
+    count++;
+  }
+  // Two-Side Constructor (For Isosceles Triangle)
+  Triangle(double a, double b)
+  {
+    this.sideA = a;
+    this.sideB = b;
+    this(a,b, Math.sqrt(a*a + b*b));
+    count++;
+  }
+  // Three-Side Constructor (For Right AngLe Triangle)
+  Triangle(double a, double b, double c) {
+        this.sideA = a;
+        this. sideB = b;
+        this.sideC = c;
         count++;
     }
 
-    // Copy constructor
-    public Triangle(Triangle other)
-   {
-        this.a = other.a;
-        this.b = other.b;
-        this.c = other.c;
+  Triangle(Triangle other) {
+        this.sideA = other.sideA;
+        this.sideB = other.sideB;
+        this.sideC = other.sideC;
+        count++;
     }
 
-    public double perimeter() 
+    public double perimeter()
     {
-        return a + b + c;
-    }
+       return sideA + sideB + sideC;
+     }
 
-    public boolean isRightAngle() 
-   {
-        double[] sides = {a, b, c};
-
-        java.util.Arrays.sort(sides);
-        return Math.abs((sides[0] * sides[0] + sides[1] * sides[1]) - (sides[2] * sides[2])) < 1e-9;
-
-    }
-
-    public static int Count() {
-        return count;
-    }
-
-    @Override
-    public String toString() {
-        return "Triangle sides: " + "\n side A : " + a +  "\n side B : " + b + "\n side C : " + c;
-    }
+     public boolean isRightAngle()
+     {
+        if(sideA > sideB && sideA > sideC)
+        {
+            return sideA * sideA == sideB * sideB + sideC * sideC;
+        }
+        else if(sideB > sideA && sideB > sideC)
+        {
+            return sideB * sideB == sideA * sideA + sideC * sideC;
+        }
+       else 
+       {
+        return sideC * sideC == sideA * sideA + sideB * sideB;
+       }
+}
+ public String toString()
+ {
+    return "The value of side of Triangle are" + "\nSIDE A : " + sideA 
+    + "\nSIDE B : " + sideB + "\nSIDE C : " + sideC;
+ } 
 }
 
